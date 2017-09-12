@@ -12,7 +12,9 @@ node {
   }
 
   stage('Build') {
+    /* Building multiple tags is cheap, as all the layers are reused. */
     docker.build("postgres-custom:${env.BUILD_ID}")
+    docker.build("postgres-custom:latest")
   }
 
 }
