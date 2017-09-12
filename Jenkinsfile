@@ -7,9 +7,8 @@ node {
   }
 
   stage('Test') {
-    dir('.') {
-      sh './test.sh'
-	}
+    sh 'chmod 755 ./test.sh'
+    sh './test.sh'
   }
 
   stage('Build') {
