@@ -3,21 +3,15 @@
 node {
 
   stage('Checkout') {
-    steps {
-      checkout scm
-    }
+    checkout scm
   }
 
   stage('Test') {
-    steps {
-      sh './test.sh'
-    }
+    sh './test.sh'
   }
 
   stage('Build') {
-    steps {
-      docker.build("postgres-custom:${env.BUILD_ID}")
-    }
+    docker.build("postgres-custom:${env.BUILD_ID}")
   }
 
 }
