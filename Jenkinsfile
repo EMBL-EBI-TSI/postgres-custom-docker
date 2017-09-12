@@ -8,7 +8,7 @@ node {
 
   stage('Test') {
     sh 'chmod 755 ./test.sh'
-    bash './test.sh'
+    sh './test.sh'
   }
 
   stage('Build') {
