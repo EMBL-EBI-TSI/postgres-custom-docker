@@ -7,7 +7,9 @@ node {
   }
 
   stage('Test') {
-    sh './test.sh'
+    dir('.') {
+      sh 'test.sh'
+	}
   }
 
   stage('Build') {
