@@ -2,26 +2,22 @@
 
 node {
 
-  stages {
-
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+  stage('Checkout') {
+    steps {
+      checkout scm
     }
+  }
 
-    stage('Test') {
-      steps {
-        sh './test.sh'
-      }
+  stage('Test') {
+    steps {
+      sh './test.sh'
     }
+  }
 
-    stage('Build') {
-      steps {
-        docker.build("postgres-custom:${env.BUILD_ID}")
-      }
+  stage('Build') {
+    steps {
+      docker.build("postgres-custom:${env.BUILD_ID}")
     }
-
   }
 
 }
