@@ -8,7 +8,7 @@ node {
 
   stage('Test') {
     dir('.') {
-      sh 'test.sh'
+      sh './test.sh'
 	}
   }
 
