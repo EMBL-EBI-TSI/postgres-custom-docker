@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function finally {
   if [ -n "$DOCKER_INSTANCE" ]
