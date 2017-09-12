@@ -1,25 +1,27 @@
 #!/usr/bin/env groovy
 
-pipeline {
-
-  agent {
-    dockerfile true
-  }
+node {
 
   stages {
-    def image;
 
     stage('Checkout') {
-	  checkout scm
-	}
+      steps {
+        checkout scm
+      }
+    }
 
-	stage('Test') {
-	 sh ./test.sh
-	}
+    stage('Test') {
+      steps {
+        sh './test.sh'
+      }
+    }
 
     stage('Build') {
-	  image = docker.build("postgres-custom:${env.BUILD_ID}")
-	}
+      steps {
+        docker.build("postgres-custom:${env.BUILD_ID}")
+      }
+    }
+
   }
 
 }
