@@ -18,5 +18,8 @@ PG_PWD=buildsecret
 docker build -t $DOCKER_IMAGE .
 DOCKER_INSTANCE=`docker run -d --rm -p $PG_PORT:5432 -e POSTGRES_USER=$PG_USER -e POSTGRES_PASSWORD=$PG_PWD $DOCKER_IMAGE`
 echo Started $DOCKER_INSTANCE
-sleep 10s
+until docker inspect --format "{{index .State.Health.Status}}" $DOCKER_INSTANCE | grep -q healthy; do echo -n "."; sleep 1; done
+echo
+echo Healthy $DOCKER_INSTANCE
+echo Starting tests
 PGPASSWORD=$PG_PWD psql -h localhost -p $PG_PORT -U $PG_USER postgres -c 'select count(*) from pg_stat_activity;'
