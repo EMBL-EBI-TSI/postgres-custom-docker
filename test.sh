@@ -18,7 +18,7 @@ PG_PWD=buildsecret
 
 # Start the container
 docker build -t $DOCKER_IMAGE .
-DOCKER_INSTANCE=`docker run -d --rm -p $PG_PORT:5432 -e POSTGRES_USER=$PG_USER -e POSTGRES_PASSWORD=$PG_PWD $DOCKER_IMAGE`
+DOCKER_INSTANCE=$(docker run -d --rm -p $PG_PORT:5432 -e POSTGRES_USER=$PG_USER -e POSTGRES_PASSWORD=$PG_PWD $DOCKER_IMAGE)
 echo Started $DOCKER_INSTANCE
 
 # wait until we know whether the things inside are alive/dead
